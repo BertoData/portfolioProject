@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+/* Tailwind v4: make dark: utilities respond to .dark class (theme toggle) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --muted: #64748b;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --navy: #1e40af;
+  --navy-hover: #1d4ed8;
+  --navy-muted: #eff6ff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-navy: var(--navy);
+  --color-navy-hover: var(--navy-hover);
+  --color-navy-muted: var(--navy-muted);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #f1f5f9;
+  --muted: #94a3b8;
+  --card: #1e293b;
+  --border: #334155;
+  --navy: #60a5fa;
+  --navy-hover: #93c5fd;
+  --navy-muted: #0f172a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-space-grotesk), sans-serif;
+}
+
+::selection {
+  background: var(--navy);
+  color: #f8fafc;
+}
+
+.dark ::selection {
+  background: var(--navy);
+  color: #f1f5f9;
+}
+
+/* Home hero animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; filter: blur(40px); }
+  50% { opacity: 0.9; filter: blur(50px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.hero-blob {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-hover) 50%, var(--navy) 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease infinite;
+}
+
