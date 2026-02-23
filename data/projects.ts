@@ -15,7 +15,7 @@ export const projects: Project[] = [
       "Implemented cleaning + dedup logic in Pandas to keep refreshes stable and avoid repeated product records.",
       "Created stakeholder-friendly Power BI visuals to explore trends across shoe types and attributes.",
     ],
-    role: "Data Engineer + Analyst",
+    role: "Data Analyst ",
     timeframe: "Jan 2026 - Present",
     links: {
       github: "https://github.com/YOUR_USERNAME/king-stats",
@@ -50,13 +50,30 @@ export const projects: Project[] = [
     images: ["/images/ardinuo_pictures.png"],
     featured: true,
   },
-
+  {
+    id: "MKS Instruments Internship",
+    title: "Data Analytics Internship",
+    oneLiner: "A GUI for automaticat data validation and analysis",
+    description:
+      "I worked on a GUI for automaticat data validation and analysis. I used Python, PyQt5, and SQLite to create a GUI that allows users to validate and analyze data from a SQLite database. I also used PyQt5 to create a GUI that allows users to analyze data from a SQLite database." , 
+    category: "Data",
+    tech: ["Python", "PyQt5", "SQLite"],
+    highlights: ["Used Python, PyQt5, and SQLite to create a GUI that allows users to validate and analyze data from a SQLite database.", "Used PyQt5 to create a GUI that allows users to analyze data from a SQLite database."],
+    role: "Data Analyst Intern",
+    timeframe: "Summer 2025",
+    featured: true,
+    links: {
+      github: "https://github.com/YOUR_USERNAME/cu-hyperloop-telemetry",
+      caseStudy: "https://yourportfolio.com/cu-hyperloop-case-study",
+    },
+    images: ["/images/mks_logo.png"],
+  },
   {
     id: "curls-on-the-block-platform",
     title: "Curls on the Block – Hair Care Recommendations Platform",
     oneLiner: "Full-stack platform to personalize hair care + boost STEM engagement.",
     description:
-      "Full-stack project for a nonprofit empowering girls and women of color through natural hair confidence and STEM engagement. Built the foundation for a recommendations experience with a structured database, reusable UI components, and API routes for future recommendation logic.",
+      "Full-stack project for a nonprofit empoweringrls and women of color through natural hair confidence and STEM engagement. Built the foundation for a recommendations experience with a structured database, reusable UI components, and API routes for future recommendation logic.",
     category: "Web",
     tech: ["React", "Node.js", "TypeScript", "Express", "MySQL", "GitHub"],
     highlights: [
