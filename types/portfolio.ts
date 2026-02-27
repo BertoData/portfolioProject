@@ -18,6 +18,8 @@ export type Project = {
   highlights: string[];
   role: string;
   timeframe: string;
+  /** optional ISO date string for the project (e.g. start date) */
+  date?: string;
   links: ProjectLinkSet;
   images?: string[];
   featured: boolean;

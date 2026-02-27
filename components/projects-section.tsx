@@ -18,9 +18,10 @@ export function ProjectsSection({
   onClearProjectIdToOpen,
 }: ProjectsSectionProps) {
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [category, setCategory] = useState<"All" | ProjectCategory>("All");
-  const [selectedTech, setSelectedTech] = useState("");
-  const [sortBy, setSortBy] = useState<"Newest" | "Oldest" | "A-Z">("Newest");
+  const [selectedTech, setSelectedTech] = useState<string[]>([]);
+  const [sortBy, setSortBy] = useState<"Newest" | "Oldest" | "A-Z" | "Featured">("Newest");
   const [featuredOnly, setFeaturedOnly] = useState(false);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,17 +32,22 @@ export function ProjectsSection({
     [projects],
   );
 
+  const getStartYear = (project: Project) => {
+    if (project.date) {
+      return new Date(project.date).getFullYear();
+    }
+    const match = project.timeframe.match(/\d{4}/);
+    return match ? Number.parseInt(match[0], 10) : 0;
+  };
+
   const filteredProjects = useMemo(() => {
-    const query = search.trim().toLowerCase();
-    const getStartYear = (timeframe: string) => {
-      const match = timeframe.match(/\d{4}/);
-      return match ? Number.parseInt(match[0], 10) : 0;
-    };
+    const query = debouncedSearch.trim().toLowerCase();
 
     return projects
       .filter((project) => {
         const categoryMatch = category === "All" || project.category === category;
-        const techMatch = !selectedTech || project.tech.includes(selectedTech);
+        const techMatch =
+          selectedTech.length === 0 || selectedTech.some((t) => project.tech.includes(t));
         const featuredMatch = !featuredOnly || project.featured;
         const textMatch =
           !query ||
@@ -56,9 +62,12 @@ export function ProjectsSection({
         if (sortBy === "A-Z") {
           return a.title.localeCompare(b.title);
         }
+        if (sortBy === "Featured") {
+          return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
+        }
 
-        const yearA = getStartYear(a.timeframe);
-        const yearB = getStartYear(b.timeframe);
+        const yearA = getStartYear(a);
+        const yearB = getStartYear(b);
 
         if (sortBy === "Oldest") {
           return yearA - yearB;
@@ -66,12 +75,12 @@ export function ProjectsSection({
 
         return yearB - yearA;
       });
-  }, [projects, search, category, selectedTech, featuredOnly, sortBy]);
+  }, [projects, debouncedSearch, category, selectedTech, featuredOnly, sortBy]);
 
   function resetFilters() {
     setSearch("");
     setCategory("All");
-    setSelectedTech("");
+    setSelectedTech([]);
     setSortBy("Newest");
     setFeaturedOnly(false);
   }
@@ -89,6 +98,13 @@ export function ProjectsSection({
     onClearProjectIdToOpen?.();
   }
 
+  // debounce search input
+  useEffect(() => {
+    const timer = window.setTimeout(() => setDebouncedSearch(search), 250);
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  // open modal if url param triggered
   useEffect(() => {
     if (!projectIdToOpen || !onClearProjectIdToOpen) return;
     const project = projects.find((p) => p.id === projectIdToOpen);
@@ -100,6 +116,13 @@ export function ProjectsSection({
     }, 0);
     return () => window.clearTimeout(timer);
   }, [projectIdToOpen, projects, onClearProjectIdToOpen]);
+
+  // modal navigation
+  const currentIndex = activeProject
+    ? filteredProjects.findIndex((p) => p.id === activeProject.id)
+    : -1;
+  const prevProject = currentIndex > 0 ? filteredProjects[currentIndex - 1] : null;
+  const nextProject = currentIndex >= 0 && currentIndex < filteredProjects.length - 1 ? filteredProjects[currentIndex + 1] : null;
 
   return (
     <>
@@ -121,9 +144,20 @@ export function ProjectsSection({
       />
 
       {filteredProjects.length === 0 ? (
-        <p className="rounded-2xl border border-dashed border-zinc-300 bg-white p-6 text-sm text-zinc-600 dark:border-zinc-700/80 dark:bg-zinc-800/95 dark:text-zinc-300 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.04)]">
-          No projects match this filter. Try another keyword or category.
-        </p>
+        <div className="space-y-4">
+          <p className="rounded-2xl border border-dashed border-zinc-300 bg-white p-6 text-sm text-zinc-600 dark:border-zinc-700/80 dark:bg-zinc-800/95 dark:text-zinc-300 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.04)]">
+            No projects match these filters.
+          </p>
+          {search && (
+            <button
+              type="button"
+              onClick={() => setSearch("")}
+              className="rounded-full border border-zinc-200 px-4 py-2 text-sm text-zinc-700 transition hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+            >
+              Clear search
+            </button>
+          )}
+        </div>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {filteredProjects.map((project) => (
@@ -132,7 +166,15 @@ export function ProjectsSection({
         </div>
       )}
 
-      <ProjectModal project={activeProject} isOpen={isModalOpen} onClose={closeModal} />
+      <ProjectModal
+        project={activeProject}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        prevProject={prevProject}
+        nextProject={nextProject}
+        onPrev={() => prevProject && openModal(prevProject)}
+        onNext={() => nextProject && openModal(nextProject)}
+      />
     </>
   );
 }

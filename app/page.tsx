@@ -6,10 +6,12 @@ import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { ProjectsSection } from "@/components/projects-section";
 import { Section } from "@/components/section";
+import { BackToTop } from "@/components/back-to-top";
 import { experience, profile, projects, skillGroups } from "@/data/data";
 
 export default function HomePage() {
   const [projectIdToOpen, setProjectIdToOpen] = useState<string | null>(null);
+  const experiencePointsClassName = "mt-3 list-disc space-y-1 pl-5 text-sm text-zinc-600 dark:text-zinc-300";
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-white to-[var(--navy-muted)] dark:from-[var(--background)] dark:via-slate-900 dark:to-[var(--navy-muted)]">
@@ -80,11 +82,18 @@ export default function HomePage() {
               </div>
             </div>
             <div className="relative hidden shrink-0 lg:block">
-              <div
-                className="hero-blob h-48 w-48 rounded-2xl shadow-2xl shadow-[var(--navy)]/25 transition hover:scale-105 dark:shadow-[var(--navy)]/20"
-                style={{ animation: "float 5s ease-in-out infinite" }}
-                aria-hidden
-              />
+              <a
+                href="https://www.linkedin.com/in/berto-mazum/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit my LinkedIn page"
+              >
+                <img
+                  src="/images/linkedinProf.png"
+                  alt="Berto Mazum, LinkedIn profile"
+                  className="h-32 w-32 sm:h-40 sm:w-40 lg:h-48 lg:w-48 rounded-2xl border border-zinc-200 shadow-2xl object-cover transition hover:scale-105 hover:border-[var(--navy)]"
+                />
+              </a>
             </div>
           </div>
         </section>
@@ -160,7 +169,7 @@ export default function HomePage() {
                     {item.role} · {item.organization}
                   </h3>
                   <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">{item.summary}</p>
-                  <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-zinc-600 dark:text-zinc-300">
+                  <ul className={experiencePointsClassName}>
                     {item.points.map((point) => (
                       <li key={point}>{point}</li>
                     ))}
@@ -199,6 +208,7 @@ export default function HomePage() {
           </div>
         </Section>
       </main>
+      <BackToTop />
       <Footer />
     </div>
   );

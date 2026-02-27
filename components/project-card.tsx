@@ -41,14 +41,14 @@ export function ProjectCard({ project, onOpen }: ProjectCardProps) {
       <div className="mt-5 flex items-center justify-between">
         <Link
           href={`/project/${project.id}`}
-          className="text-sm font-medium text-zinc-700 underline-offset-4 hover:underline dark:text-zinc-300"
+          className="text-sm font-medium text-zinc-700 underline-offset-4 hover:underline focus:ring-2 focus:ring-[var(--navy)] dark:text-zinc-300"
         >
           Open page
         </Link>
         <button
           type="button"
           onClick={() => onOpen(project)}
-          className="rounded-full bg-[var(--navy)] px-4 py-2 text-sm font-medium text-white transition hover:bg-[var(--navy-hover)] dark:bg-[var(--navy)] dark:hover:bg-[var(--navy-hover)]"
+          className="rounded-full bg-[var(--navy)] px-4 py-2 text-sm font-medium text-white transition hover:bg-[var(--navy-hover)] focus:ring-2 focus:ring-[var(--navy)] dark:bg-[var(--navy)] dark:hover:bg-[var(--navy-hover)]"
         >
           Details
         </button>

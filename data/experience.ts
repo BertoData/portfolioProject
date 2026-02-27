@@ -3,13 +3,12 @@ import type { ExperienceItem } from "@/types/portfolio";
 export const experience: ExperienceItem[] = [
   {
     id: "exp-1",
-    role: "Data Analyst Intern",
+    role: "Data Analyst Engineering Intern",
     organization: "MKS Instruments",
     timeframe: "Summer 2025",
     summary:
-      "Applied structured data analysis to improve internal IT and engineering workflows.",
+      "Applied structured data analysis to improve internal and engineering workflows.",
     points: [
-      "Analyzed recurring service tickets to identify operational bottlenecks and reduce repeat incidents.",
       "Organized and cleaned internal operational datasets to improve reporting accuracy.",
       "Developed internal tools to automate repetitive validation processes.",
       "Translated operational data into structured documentation and measurable workflow improvements."

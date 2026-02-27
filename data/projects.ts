@@ -17,6 +17,7 @@ export const projects: Project[] = [
     ],
     role: "Data Analyst ",
     timeframe: "Jan 2026 - Present",
+    date: "2026-01-01",
     links: {
       github: "https://github.com/YOUR_USERNAME/king-stats",
       caseStudy: "https://yourportfolio.com/king-stats-case-study",
@@ -43,6 +44,7 @@ export const projects: Project[] = [
     ],
     role: "Embedded Software Engineer",
     timeframe: "Sep 2024 - Present",
+    date: "2024-09-01",
     links: {
       github: "https://github.com/YOUR_USERNAME/cu-hyperloop-telemetry",
       caseStudy: "https://yourportfolio.com/cu-hyperloop-case-study",

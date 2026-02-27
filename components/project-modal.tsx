@@ -8,6 +8,10 @@ type ProjectModalProps = {
   project: Project | null;
   isOpen: boolean;
   onClose: () => void;
+  prevProject?: Project | null;
+  nextProject?: Project | null;
+  onPrev?: () => void;
+  onNext?: () => void;
 };
 
 function getFocusableElements(container: HTMLElement) {
@@ -23,7 +27,7 @@ function getFocusableElements(container: HTMLElement) {
   return Array.from(container.querySelectorAll<HTMLElement>(selectors.join(",")));
 }
 
-export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
+export function ProjectModal({ project, isOpen, onClose, prevProject, nextProject, onPrev, onNext }: ProjectModalProps) {
   const panelRef = useRef<HTMLDivElement>(null);
   const previousActiveElementRef = useRef<HTMLElement | null>(null);
 
@@ -45,6 +49,18 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
       if (event.key === "Escape") {
         event.preventDefault();
         onClose();
+        return;
+      }
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        onNext?.();
+        return;
+      }
+
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        onPrev?.();
         return;
       }
 
@@ -109,7 +125,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
         }`}
       >
         <div className="mb-4 flex items-start justify-between gap-4">
-          <div>
+          <div className="flex flex-col">
             <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
               {project.category}
             </p>
@@ -117,13 +133,37 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
               {project.title}
             </h3>
           </div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-full border border-zinc-300 px-3 py-1.5 text-sm text-zinc-700 transition hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
-          >
-            Close
-          </button>
+          <div className="flex items-center gap-2">
+            {onPrev && (
+              <button
+                type="button"
+                onClick={onPrev}
+                disabled={!prevProject}
+                aria-label="Previous project"
+                className="rounded-full border border-zinc-300 px-2 py-1 text-sm text-zinc-700 transition hover:bg-zinc-100 focus:ring-2 focus:ring-[var(--navy)] disabled:opacity-40 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+              >
+                ◀
+              </button>
+            )}
+            {onNext && (
+              <button
+                type="button"
+                onClick={onNext}
+                disabled={!nextProject}
+                aria-label="Next project"
+                className="rounded-full border border-zinc-300 px-2 py-1 text-sm text-zinc-700 transition hover:bg-zinc-100 focus:ring-2 focus:ring-[var(--navy)] disabled:opacity-40 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+              >
+                ▶
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={onClose}
+              className="rounded-full border border-zinc-300 px-3 py-1.5 text-sm text-zinc-700 transition hover:bg-zinc-100 focus:ring-2 focus:ring-[var(--navy)] dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+            >
+              Close
+            </button>
+          </div>
         </div>
 
         <p id="project-modal-description" className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">
