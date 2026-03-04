@@ -160,6 +160,7 @@ export const projects: Project[] = [
       live: "https://YOUR_PORTFOLIO.vercel.app",
     },
     featured: true,
+    images: ["/images/portfolio_face.png"],
   },
   {
     id: "cu-campus-expansion-dashboard",
@@ -183,5 +184,27 @@ export const projects: Project[] = [
     },
     images: ["/images/image.png"],
     featured: true,
+  },
+  {
+    id: "info-3402-dashboard-project",
+    title: "INFO 3402: Multi-Dataset Dashboards",
+    oneLiner: "Three interactive dashboards from random datasets: sleep vs screen time, NBA stats, and Spotify analytics.",
+    description:
+      "Class project for INFO 3402 where I sourced three independent datasets and transformed them into interactive, insightful dashboards. Each dashboard explores a unique domain—personal wellness correlations, sports analytics, and music streaming patterns—applying consistent visualization principles and data storytelling.",
+    category: "Data",
+    tech: ["Power BI", "Excel", "Data Visualization", "Data Cleaning", "Analytics"],
+    highlights: [
+      "Sleep vs Screen Time: Analyzed personal wellness data to explore correlations between screen time and sleep quality/duration.",
+      "NBA Statistics: Built interactive dashboards to compare player performance metrics, team standings, and historical trends.",
+      "Spotify Data: Created visualizations of music listening patterns, genre trends, and artist analytics.",
+      "Applied consistent dashboard design patterns across all three projects for clarity and usability.",
+    ],
+    role: "Data Analyst",
+    timeframe: "2026",
+    links: {
+      caseStudy: "https://yourportfolio.com/info-3402-dashboards",
+    },
+    images: ["/images/sleep_Dashboard.png", "/images/nba_stats.png", "/images/artist_dashboard.png"],
+    featured: false,
   },
 ];
