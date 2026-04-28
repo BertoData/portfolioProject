@@ -45,13 +45,13 @@ export function FilterBar({
 }: FilterBarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const panelClassName =
-    "rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm dark:border-zinc-700/80 dark:bg-zinc-800/95 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.04)]";
+    "rounded-2xl border border-zinc-200/50 bg-white/60 backdrop-blur p-4 shadow-sm transition-all duration-300 dark:border-zinc-700/50 dark:bg-zinc-800/50 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.04)]";
 
   const content = (
     <div className={panelClassName}>
       {/* search + selects row */}
       <div className="grid gap-4 md:grid-cols-3">
-        <label className="flex items-center gap-2 rounded-xl border border-zinc-200 px-3 py-2 dark:border-zinc-700">
+        <label className="flex items-center gap-2 rounded-xl border border-zinc-200/50 bg-white/40 backdrop-blur px-3 py-2 transition-all duration-300 focus-within:border-[var(--navy)]/50 focus-within:ring-2 focus-within:ring-[var(--navy)]/30 dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:focus-within:border-[var(--navy)]/50">
           <span className="text-zinc-500 dark:text-zinc-400">⌕</span>
           <input
             type="search"
@@ -65,7 +65,7 @@ export function FilterBar({
         <select
           value={category}
           onChange={(event) => onCategoryChange(event.target.value as "All" | ProjectCategory)}
-          className="rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700 outline-none transition focus:border-zinc-400 focus:ring-2 focus:ring-[var(--navy)] dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-200"
+          className="rounded-xl border border-zinc-200/50 bg-white/40 backdrop-blur px-3 py-2 text-sm text-zinc-700 outline-none transition-all duration-300 focus:border-[var(--navy)]/50 focus:ring-2 focus:ring-[var(--navy)]/30 dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-200 dark:focus:border-[var(--navy)]/50"
           aria-label="Filter by category"
         >
           {categories.map((item) => (
@@ -77,7 +77,7 @@ export function FilterBar({
         <select
           value={sortBy}
           onChange={(event) => onSortByChange(event.target.value as "Newest" | "Oldest" | "A-Z" | "Featured")}
-          className="rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700 outline-none transition focus:border-zinc-400 focus:ring-2 focus:ring-[var(--navy)] dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-200"
+          className="rounded-xl border border-zinc-200/50 bg-white/40 backdrop-blur px-3 py-2 text-sm text-zinc-700 outline-none transition-all duration-300 focus:border-[var(--navy)]/50 focus:ring-2 focus:ring-[var(--navy)]/30 dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-200 dark:focus:border-[var(--navy)]/50"
           aria-label="Sort projects"
         >
           <option value="Newest">Newest</option>
@@ -96,10 +96,10 @@ export function FilterBar({
               key={tech}
               type="button"
               onClick={() => onSelectedTechChange(toggleArray(selectedTech, tech))}
-              className={`rounded-full px-3 py-1.5 text-sm transition focus:ring-2 focus:ring-[var(--navy)] ${
+              className={`rounded-full px-3 py-1.5 text-sm transition-all duration-300 focus:ring-2 focus:ring-[var(--navy)] ${
                 selected
-                  ? "bg-[var(--navy)] text-white dark:bg-[var(--navy)] dark:text-white"
-                  : "border border-zinc-200 text-zinc-600 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                  ? "bg-gradient-to-br from-[var(--navy)] to-[var(--navy)]/90 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 dark:to-[var(--navy-hover)]/90"
+                  : "border border-zinc-200/50 bg-zinc-50/50 text-zinc-600 transition-all duration-300 hover:bg-[var(--navy)]/10 hover:text-[var(--navy)] dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-300 dark:hover:bg-[var(--navy)]/30 dark:hover:text-[var(--navy-hover)]"
               }`}
             >
               {tech}
@@ -114,10 +114,10 @@ export function FilterBar({
           <button
             type="button"
             onClick={() => onFeaturedOnlyChange(!featuredOnly)}
-            className={`rounded-full px-3 py-1.5 text-sm transition ${
+            className={`rounded-full px-3 py-1.5 text-sm transition-all duration-300 ${
               featuredOnly
-                ? "bg-[var(--navy)] text-white dark:bg-[var(--navy)] dark:text-white"
-                : "border border-zinc-200 text-zinc-600 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                ? "bg-gradient-to-br from-[var(--navy)] to-[var(--navy)]/90 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 dark:to-[var(--navy-hover)]/90"
+                : "border border-zinc-200/50 bg-zinc-50/50 text-zinc-600 hover:bg-[var(--navy)]/10 hover:text-[var(--navy)] dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-300 dark:hover:bg-[var(--navy)]/30 dark:hover:text-[var(--navy-hover)]"
             }`}
           >
             Featured only
@@ -125,7 +125,7 @@ export function FilterBar({
           <button
             type="button"
             onClick={onReset}
-            className="rounded-full border border-zinc-200 px-3 py-1.5 text-sm text-zinc-600 transition hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+            className="rounded-full border border-zinc-200/50 bg-zinc-50/50 px-3 py-1.5 text-sm text-zinc-600 transition-all duration-300 hover:bg-[var(--navy)]/10 hover:text-[var(--navy)] dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-300 dark:hover:bg-[var(--navy)]/30 dark:hover:text-[var(--navy-hover)]"
           >
             Clear filters
           </button>
@@ -154,7 +154,7 @@ export function FilterBar({
         <button
           type="button"
           onClick={() => setMobileOpen(true)}
-          className="rounded-full border border-zinc-200 px-3 py-1.5 text-sm text-zinc-600 transition hover:bg-zinc-100 focus:ring-2 focus:ring-[var(--navy)] dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+          className="rounded-full border border-zinc-200/50 bg-zinc-50/50 px-3 py-1.5 text-sm text-zinc-600 transition-all duration-300 hover:bg-[var(--navy)]/10 hover:text-[var(--navy)] focus:ring-2 focus:ring-[var(--navy)] dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-300 dark:hover:bg-[var(--navy)]/30 dark:hover:text-[var(--navy-hover)]"
           aria-label="Open filters"
         >
           Filters
@@ -171,11 +171,11 @@ export function FilterBar({
             if (e.target === e.currentTarget) setMobileOpen(false);
           }}
         >
-          <div className="h-full w-3/4 max-w-xs bg-white p-4 dark:bg-zinc-800">
+          <div className="h-full w-3/4 max-w-xs bg-white/90 backdrop-blur p-4 dark:bg-zinc-800/90">
             <button
               type="button"
               onClick={() => setMobileOpen(false)}
-              className="mb-4 rounded-full border border-zinc-200 px-3 py-1.5 text-sm text-zinc-600 transition hover:bg-zinc-100 focus:ring-2 focus:ring-[var(--navy)] dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+              className="mb-4 rounded-full border border-zinc-200/50 bg-zinc-50/50 px-3 py-1.5 text-sm text-zinc-600 transition-all duration-300 hover:bg-[var(--navy)]/10 hover:text-[var(--navy)] focus:ring-2 focus:ring-[var(--navy)] dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-300 dark:hover:bg-[var(--navy)]/30 dark:hover:text-[var(--navy-hover)]"
             >
               Close
             </button>

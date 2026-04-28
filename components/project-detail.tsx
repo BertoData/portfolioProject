@@ -6,7 +6,7 @@ type ProjectDetailProps = {
 
 export function ProjectDetail({ project }: ProjectDetailProps) {
   return (
-    <article className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-700/80 dark:bg-zinc-800/95 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.04)]">
+    <article className="rounded-2xl border border-zinc-200/50 bg-white/60 backdrop-blur p-6 shadow-sm transition-all duration-300 dark:border-zinc-700/50 dark:bg-zinc-800/50 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.04)]">
       <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">{project.category}</p>
       <h1 className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">{project.title}</h1>
       <p className="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-300">{project.description}</p>
@@ -16,7 +16,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
           <h2 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Screenshots</h2>
           <div className="mt-2 grid gap-3 sm:grid-cols-2">
             {project.images.map((src, i) => (
-              <div key={i} className="relative aspect-video overflow-hidden rounded-xl border border-zinc-200 bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800">
+              <div key={i} className="relative aspect-video overflow-hidden rounded-xl border border-zinc-200/50 bg-zinc-100/50 dark:border-zinc-700/50 dark:bg-zinc-800/50">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={src} alt="" className="h-full w-full object-cover" />
               </div>
@@ -26,11 +26,11 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
       ) : null}
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        <div className="rounded-xl border border-zinc-200 p-4 dark:border-zinc-700">
+        <div className="rounded-xl border border-zinc-200/50 bg-white/40 backdrop-blur p-4 transition-all duration-300 hover:bg-white/60 dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:hover:bg-zinc-900/50">
           <h2 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Role</h2>
           <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">{project.role}</p>
         </div>
-        <div className="rounded-xl border border-zinc-200 p-4 dark:border-zinc-700">
+        <div className="rounded-xl border border-zinc-200/50 bg-white/40 backdrop-blur p-4 transition-all duration-300 hover:bg-white/60 dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:hover:bg-zinc-900/50">
           <h2 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Timeframe</h2>
           <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">{project.timeframe}</p>
         </div>
@@ -39,7 +39,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
       <h2 className="mt-6 text-sm font-semibold text-zinc-900 dark:text-zinc-100">Highlights</h2>
       <ul className="mt-2 space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
         {project.highlights.map((item) => (
-          <li key={item} className="rounded-lg border border-zinc-200 px-3 py-2 dark:border-zinc-700">
+          <li key={item} className="rounded-lg border border-zinc-200/50 bg-zinc-50/50 backdrop-blur px-3 py-2 transition-all duration-300 hover:bg-zinc-100/80 dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:hover:bg-zinc-900/50">
             {item}
           </li>
         ))}
@@ -50,7 +50,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
         {project.tech.map((item) => (
           <span
             key={item}
-            className="rounded-full border border-zinc-200 px-2.5 py-1 text-xs text-zinc-600 dark:border-zinc-700 dark:text-zinc-300"
+            className="rounded-full border border-zinc-200/50 bg-zinc-50/50 backdrop-blur px-2.5 py-1 text-xs text-zinc-600 transition-all duration-300 hover:bg-[var(--navy)]/10 hover:text-[var(--navy)] dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-300 dark:hover:bg-[var(--navy)]/30 dark:hover:text-[var(--navy-hover)]"
           >
             {item}
           </span>
@@ -63,7 +63,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
             href={project.links.github}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full bg-[var(--navy)] px-4 py-2 text-sm font-medium text-white transition hover:bg-[var(--navy-hover)] dark:bg-[var(--navy)] dark:hover:bg-[var(--navy-hover)]"
+            className="rounded-lg bg-gradient-to-br from-[var(--navy)] to-[var(--navy)]/90 px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 dark:to-[var(--navy-hover)]/90 dark:hover:shadow-black/20"
           >
             GitHub
           </a>
@@ -73,7 +73,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
             href={project.links.live}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full border border-zinc-300 px-4 py-2 text-sm text-zinc-700 transition hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+            className="rounded-lg border border-zinc-200/50 bg-white/40 backdrop-blur px-4 py-2 text-sm text-zinc-700 transition-all duration-300 hover:bg-zinc-100/80 hover:shadow-md dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-200 dark:hover:bg-zinc-900/50 dark:hover:shadow-black/20"
           >
             Live Demo
           </a>
@@ -83,7 +83,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
             href={project.links.caseStudy}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full border border-zinc-300 px-4 py-2 text-sm text-zinc-700 transition hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+            className="rounded-lg border border-zinc-200/50 bg-white/40 backdrop-blur px-4 py-2 text-sm text-zinc-700 transition-all duration-300 hover:bg-zinc-100/80 hover:shadow-md dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-200 dark:hover:bg-zinc-900/50 dark:hover:shadow-black/20"
           >
             Case Study
           </a>
@@ -94,7 +94,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
             download
             target="_blank"
             rel="noreferrer"
-            className="rounded-full border border-zinc-300 px-4 py-2 text-sm text-zinc-700 transition hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+            className="rounded-lg border border-zinc-200/50 bg-white/40 backdrop-blur px-4 py-2 text-sm text-zinc-700 transition-all duration-300 hover:bg-zinc-100/80 hover:shadow-md dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-200 dark:hover:bg-zinc-900/50 dark:hover:shadow-black/20"
           >
             Download
           </a>

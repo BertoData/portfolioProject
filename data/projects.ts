@@ -207,4 +207,22 @@ export const projects: Project[] = [
     images: ["/images/sleep_Dashboard.png", "/images/nba_stats.png", "/images/artist_dashboard.png"],
     featured: false,
   },
+  {
+    id: "cu-rec-assistant",
+    title: "CU Rec Assistant",
+    oneLiner: "Making the Rec Center Accessible for Every Buffalo.",
+    description:
+      "Designing an app that helps track machines at the rec center and see how busy certain parts of the rec are. It also gives tips on how to increase your goals for example if you want to focus on muscle growth or stamina or fat loss.",
+    category: "Design",
+    tech: ["Figma"],
+    highlights: [],
+    role: "Team Member",
+    timeframe: "February - April 2026",
+    date: "2026-02-01",
+    links: {
+      live: "https://docs.google.com/presentation/d/1ZFh8umYkWjB9PdttwW3-GNDu3mpQw1KKOoufT9C2yrs/edit?usp=sharing",
+    },
+    images: ["/images/rec_assistant.png"],
+    featured: false,
+  },
 ];

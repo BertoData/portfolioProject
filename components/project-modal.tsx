@@ -120,7 +120,7 @@ export function ProjectModal({ project, isOpen, onClose, prevProject, nextProjec
         aria-labelledby="project-modal-title"
         aria-describedby="project-modal-description"
         tabIndex={-1}
-        className={`w-full max-w-3xl rounded-2xl border border-zinc-200 bg-white p-6 shadow-2xl outline-none transition duration-200 dark:border-zinc-600 dark:bg-zinc-800/98 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_25px_50px_-12px_rgba(0,0,0,0.5)] ${
+        className={`w-full max-w-3xl rounded-2xl border border-zinc-200/50 bg-white/90 backdrop-blur p-6 shadow-2xl outline-none transition duration-200 dark:border-zinc-600/50 dark:bg-zinc-800/80 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_25px_50px_-12px_rgba(0,0,0,0.5)] ${
           isOpen ? "translate-y-0 scale-100 opacity-100" : "translate-y-4 scale-95 opacity-0"
         }`}
       >
@@ -140,7 +140,7 @@ export function ProjectModal({ project, isOpen, onClose, prevProject, nextProjec
                 onClick={onPrev}
                 disabled={!prevProject}
                 aria-label="Previous project"
-                className="rounded-full border border-zinc-300 px-2 py-1 text-sm text-zinc-700 transition hover:bg-zinc-100 focus:ring-2 focus:ring-[var(--navy)] disabled:opacity-40 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+                className="rounded-full border border-zinc-200/50 bg-white/40 backdrop-blur px-2 py-1 text-sm text-zinc-700 transition-all duration-300 hover:bg-zinc-100/80 focus:ring-2 focus:ring-[var(--navy)] disabled:opacity-40 dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-200 dark:hover:bg-zinc-900/50"
               >
                 ◀
               </button>
@@ -151,7 +151,7 @@ export function ProjectModal({ project, isOpen, onClose, prevProject, nextProjec
                 onClick={onNext}
                 disabled={!nextProject}
                 aria-label="Next project"
-                className="rounded-full border border-zinc-300 px-2 py-1 text-sm text-zinc-700 transition hover:bg-zinc-100 focus:ring-2 focus:ring-[var(--navy)] disabled:opacity-40 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+                className="rounded-full border border-zinc-200/50 bg-white/40 backdrop-blur px-2 py-1 text-sm text-zinc-700 transition-all duration-300 hover:bg-zinc-100/80 focus:ring-2 focus:ring-[var(--navy)] disabled:opacity-40 dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-200 dark:hover:bg-zinc-900/50"
               >
                 ▶
               </button>
@@ -159,7 +159,7 @@ export function ProjectModal({ project, isOpen, onClose, prevProject, nextProjec
             <button
               type="button"
               onClick={onClose}
-              className="rounded-full border border-zinc-300 px-3 py-1.5 text-sm text-zinc-700 transition hover:bg-zinc-100 focus:ring-2 focus:ring-[var(--navy)] dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+              className="rounded-full border border-zinc-200/50 bg-white/40 backdrop-blur px-3 py-1.5 text-sm text-zinc-700 transition-all duration-300 hover:bg-zinc-100/80 focus:ring-2 focus:ring-[var(--navy)] dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-200 dark:hover:bg-zinc-900/50"
             >
               Close
             </button>
@@ -171,7 +171,7 @@ export function ProjectModal({ project, isOpen, onClose, prevProject, nextProjec
         </p>
 
         {project.images && project.images.length > 0 ? (
-          <div className="mt-4 flex gap-2 overflow-x-auto rounded-xl border border-zinc-200 bg-zinc-50 p-2 dark:border-zinc-700 dark:bg-zinc-800/50">
+          <div className="mt-4 flex gap-2 overflow-x-auto rounded-xl border border-zinc-200/50 bg-zinc-50/50 backdrop-blur p-2 dark:border-zinc-700/50 dark:bg-zinc-800/30">
             {project.images.map((src, i) => (
               <div key={i} className="relative h-28 w-40 shrink-0 overflow-hidden rounded-lg bg-zinc-200 dark:bg-zinc-700">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -182,18 +182,18 @@ export function ProjectModal({ project, isOpen, onClose, prevProject, nextProjec
         ) : null}
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-xl border border-zinc-200 p-4 dark:border-zinc-700">
+          <div className="rounded-xl border border-zinc-200/50 bg-white/40 backdrop-blur p-4 transition-all duration-300 hover:bg-white/60 dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:hover:bg-zinc-900/50">
             <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Role & Timeline</h4>
             <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">{project.role}</p>
             <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-300">{project.timeframe}</p>
           </div>
-          <div className="rounded-xl border border-zinc-200 p-4 dark:border-zinc-700">
+          <div className="rounded-xl border border-zinc-200/50 bg-white/40 backdrop-blur p-4 transition-all duration-300 hover:bg-white/60 dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:hover:bg-zinc-900/50">
             <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Tech Stack</h4>
             <div className="mt-2 flex flex-wrap gap-2">
               {project.tech.map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border border-zinc-200 px-2.5 py-1 text-xs text-zinc-600 dark:border-zinc-700 dark:text-zinc-300"
+                  className="rounded-full border border-zinc-200/50 bg-zinc-50/50 backdrop-blur px-2.5 py-1 text-xs text-zinc-600 transition-all duration-300 hover:bg-[var(--navy)]/10 hover:text-[var(--navy)] dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-300 dark:hover:bg-[var(--navy)]/30 dark:hover:text-[var(--navy-hover)]"
                 >
                   {item}
                 </span>
@@ -206,7 +206,7 @@ export function ProjectModal({ project, isOpen, onClose, prevProject, nextProjec
           <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Highlights</h4>
           <ul className="mt-2 space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
             {project.highlights.map((highlight) => (
-              <li key={highlight} className="rounded-lg border border-zinc-200 px-3 py-2 dark:border-zinc-700">
+              <li key={highlight} className="rounded-lg border border-zinc-200/50 bg-zinc-50/50 backdrop-blur px-3 py-2 transition-all duration-300 hover:bg-zinc-100/80 dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:hover:bg-zinc-900/50">
                 {highlight}
               </li>
             ))}
@@ -216,7 +216,7 @@ export function ProjectModal({ project, isOpen, onClose, prevProject, nextProjec
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href={`/project/${project.id}`}
-            className="rounded-full bg-[var(--navy)] px-4 py-2 text-sm font-medium text-white transition hover:bg-[var(--navy-hover)] dark:bg-[var(--navy)] dark:hover:bg-[var(--navy-hover)]"
+            className="rounded-lg bg-gradient-to-br from-[var(--navy)] to-[var(--navy)]/90 px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 dark:to-[var(--navy-hover)]/90 dark:hover:shadow-black/20"
           >
             Open full page
           </Link>
@@ -225,7 +225,7 @@ export function ProjectModal({ project, isOpen, onClose, prevProject, nextProjec
               href={project.links.github}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-zinc-300 px-4 py-2 text-sm text-zinc-700 transition hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+              className="rounded-lg border border-zinc-200/50 bg-white/40 backdrop-blur px-4 py-2 text-sm text-zinc-700 transition-all duration-300 hover:bg-zinc-100/80 hover:shadow-md dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-200 dark:hover:bg-zinc-900/50 dark:hover:shadow-black/20"
             >
               GitHub
             </a>
@@ -235,7 +235,7 @@ export function ProjectModal({ project, isOpen, onClose, prevProject, nextProjec
               href={project.links.live}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-zinc-300 px-4 py-2 text-sm text-zinc-700 transition hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+              className="rounded-lg border border-zinc-200/50 bg-white/40 backdrop-blur px-4 py-2 text-sm text-zinc-700 transition-all duration-300 hover:bg-zinc-100/80 hover:shadow-md dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-200 dark:hover:bg-zinc-900/50 dark:hover:shadow-black/20"
             >
               Live Demo
             </a>
@@ -245,7 +245,7 @@ export function ProjectModal({ project, isOpen, onClose, prevProject, nextProjec
               href={project.links.caseStudy}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-zinc-300 px-4 py-2 text-sm text-zinc-700 transition hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+              className="rounded-lg border border-zinc-200/50 bg-white/40 backdrop-blur px-4 py-2 text-sm text-zinc-700 transition-all duration-300 hover:bg-zinc-100/80 hover:shadow-md dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-200 dark:hover:bg-zinc-900/50 dark:hover:shadow-black/20"
             >
               Case Study
             </a>
@@ -256,7 +256,7 @@ export function ProjectModal({ project, isOpen, onClose, prevProject, nextProjec
               download
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-zinc-300 px-4 py-2 text-sm text-zinc-700 transition hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+              className="rounded-lg border border-zinc-200/50 bg-white/40 backdrop-blur px-4 py-2 text-sm text-zinc-700 transition-all duration-300 hover:bg-zinc-100/80 hover:shadow-md dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-200 dark:hover:bg-zinc-900/50 dark:hover:shadow-black/20"
             >
               Download
             </a>

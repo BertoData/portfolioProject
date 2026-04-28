@@ -120,7 +120,7 @@ export function Navbar({ projects, onOpenProject }: NavbarProps) {
                       <ul
                         id={DROPDOWN_LIST_ID}
                         role="menu"
-                        className="absolute left-0 top-full z-50 mt-1 min-w-[12rem] rounded-xl border border-zinc-200 bg-white py-1 shadow-lg dark:border-zinc-600 dark:bg-zinc-800/98 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.04)]"
+                        className="absolute left-0 top-full z-50 mt-2 min-w-[12rem] rounded-xl border border-zinc-200/50 bg-white/90 backdrop-blur py-1 shadow-lg transition-all duration-300 dark:border-zinc-600/50 dark:bg-zinc-800/80 dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
                       >
                         {recentProjects.map((project) => (
                           <li key={project.id} role="none">
@@ -128,7 +128,7 @@ export function Navbar({ projects, onOpenProject }: NavbarProps) {
                               type="button"
                               role="menuitem"
                               onClick={() => handleProjectSelect(project)}
-                              className="w-full px-3 py-2 text-left text-sm text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800"
+                              className="w-full px-3 py-2 text-left text-sm text-zinc-700 transition-all duration-300 hover:bg-[var(--navy)]/10 hover:text-[var(--navy)] dark:text-zinc-200 dark:hover:bg-[var(--navy)]/20 dark:hover:text-[var(--navy-hover)]"
                             >
                               {project.title}
                             </button>
@@ -152,6 +152,27 @@ export function Navbar({ projects, onOpenProject }: NavbarProps) {
               </li>
             ))}
           </ul>
+          <a
+            href="/downloads/resume.pdf"
+            download
+            className="group hidden items-center gap-2 rounded-full border-2 border-[var(--navy)] bg-transparent px-4 py-2 text-sm font-semibold text-[var(--navy)] transition duration-300 hover:bg-[var(--navy)] hover:text-white dark:border-[var(--navy-hover)] dark:text-[var(--navy-hover)] dark:hover:bg-[var(--navy-hover)] sm:inline-flex"
+            title="Download resume"
+          >
+            <svg
+              className="size-4 transition-transform duration-300 group-hover:translate-y-0.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+              />
+            </svg>
+            Resume
+          </a>
           <ThemeToggle />
         </div>
       </nav>
